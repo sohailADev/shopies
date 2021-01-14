@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
   MDBContainer, MDBRow, MDBBtn, MDBCard, MDBCardBody, MDBInput,
-  MDBCardImage, MDBCardTitle, MDBCardText, MDBCol
-  , MDBListGroup, MDBListGroupItem, MDBContaine, MDBIcon
+  MDBCol, MDBListGroup, MDBListGroupItem, MDBIcon
 } from "mdbreact";
 import './App.css';
-import Movie from './Movie'
 function App() {
   //states 
   const SEARCH_API = "http://www.omdbapi.com/?s=ram&apikey=abd7655b"
@@ -36,25 +34,24 @@ function App() {
   //handle Nominations
   const handleNominations = (id) => {
     const filteredMovie = movies.find(m => m.imdbID === id)
-    const found = nominatedMovies.find(m =>m.imdbID === filteredMovie.imdbID)
+    const found = nominatedMovies.find(m => m.imdbID === filteredMovie.imdbID)
     //check if already nominated
-    if(found === undefined)
-    {
+    if (found === undefined) {
       setNominatedMovies(nominatedMovies => [...nominatedMovies, filteredMovie])
-    } 
-    
+    }
   }
   //handle  remove Nominations
   const handleRemoveNominations = (id) => {
     console.log(id)
     const filteredMovie = nominatedMovies.filter(m => m.imdbID !== id)
-    
+
     setNominatedMovies(filteredMovie)
   }
 
 
   return (
-
+    <React.Fragment>
+  
     <div className="movie_container" >
       <MDBContainer>
         <MDBRow>
@@ -72,47 +69,68 @@ function App() {
         <MDBRow className="mt-5">
           <MDBCol md='6'>
             <MDBCard>
-              <MDBCardBody>
-                <MDBListGroup style={{ width: "22rem" }}>
-                  <p>Result from  your search </p>
+              <MDBCardBody className="card_main_container">
+                
+                  <h1>Result from  your search </h1>
+                  <br></br>
                   {movies && movies.map((movie) => (
-                    <MDBListGroupItem key={movie.imdbID}>
-                      {movie.Title}
-                      <MDBBtn outline color="secondary" size="sm" onClick={() => handleNominations(movie.imdbID)}>
-                        Nominate<MDBIcon icon="magic" className="ml-1" />
-                      </MDBBtn>
-                    </MDBListGroupItem>
 
+                    <div className="card_container" key={movie.imdbID}>
+                      <div className="image_container">
+                        <img src={movie.Poster} />
+                      </div>
+                      <div className="card_content">
+                      <div className="card_content_box">
+                        <p>{movie.Title}</p>
+                        <MDBBtn gradient="aqua" className="card_btn" onClick={() => handleNominations(movie.imdbID)}>
+                          Nominate<MDBIcon icon="magic" className="ml-1" />
+                        </MDBBtn>
+                      
+                    </div></div></div>
                   ))}
 
-                </MDBListGroup>`
+             
               </MDBCardBody>
             </MDBCard>
 
           </MDBCol>
           <MDBCol md='6'>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBListGroup style={{ width: "22rem" }}>
-                  <p>Nominations</p>
+          <MDBCard>
+              <MDBCardBody className="card_main_container">
+                <div>
+                  <h1>&#10024;Nominations&#10024;</h1>
+                  </div>
+                  <br></br>
+                  <br></br>
                   {nominatedMovies && nominatedMovies.map((movie) => (
-                    <MDBListGroupItem key={movie.imdbID} >
-                      {movie.Title}
-                      <MDBBtn outline color="secondary" size="sm" onClick={() => handleRemoveNominations(movie.imdbID)}>
-                        Remove
-                      </MDBBtn>
-                    </MDBListGroupItem>
+
+                    <div className="card_container"  key={movie.imdbID}>
+                      <div className="image_container">
+                        <img src={movie.Poster} />
+                      </div>
+                      <div className="card_content">
+                      <div className="card_content_box">
+                        <p>{movie.Title}</p>
+                        <MDBBtn  gradient="peach" className="card_btn" onClick={() => handleRemoveNominations(movie.imdbID)}>
+                          Remove<MDBIcon icon="times" className="ml-1" />
+                        </MDBBtn>
+                        </div></div>
+                      
+                      
+                    </div>
                   ))}
 
-                </MDBListGroup>
+             
               </MDBCardBody>
             </MDBCard>
+
           </MDBCol>
         </MDBRow>
       </MDBContainer>
 
 
-    </div>
+    </div><div className="bg-image"></div>
+    </React.Fragment>
   );
 }
 
