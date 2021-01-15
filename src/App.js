@@ -81,7 +81,7 @@ function App() {
                         <div className="card_content_box">
                           <p>{movie.Title}</p>
                           <p>Year:{movie.Year}</p>
-                          <MDBBtn gradient="aqua" size="sm" disabled={enabled} className="card_btn" onClick={() => handleNominations(movie.imdbID)}>
+                          <MDBBtn gradient="aqua" disabled={enabled} className="card_btn" onClick={() => handleNominations(movie.imdbID)}>
                             Nominate<MDBIcon icon="magic" className="ml-1" />
                           </MDBBtn>
                         </div>
@@ -102,7 +102,7 @@ function App() {
                         <div className="card_content_box">
                           <p>{movie.Title}</p>
                           <p>Year:{movie.Year}</p>
-                          <MDBBtn gradient="peach" size="sm" className="card_btn" onClick={() => handleRemoveNominations(movie.imdbID)}>
+                          <MDBBtn gradient="peach" className="card_btn" onClick={() => handleRemoveNominations(movie.imdbID)}>
                             Remove<MDBIcon icon="times" className="ml-1" /></MDBBtn>
                         </div>
                       </div>
