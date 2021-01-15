@@ -5,3 +5,34 @@ body {
 
 }
 
+body, html {
+  height: 100%;
+  }
+  .bg {
+  background-image: url("https://bramptonist.com/wp-content/uploads/2018/06/netflix-image.jpg");
+  height: 100vh;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  position:absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -19;
+  filter:blur(5px)
+  }
+
+  .md-form .prefix.active {
+   color: #fff !important;
+} 
+
+.form-control,
+.form-control:active,
+.form-control:focus,
+.form-control:focus:active {
+  background-color: rgb(41, 23, 23) !important;;
+  border-color:#fff !important;
+  color: #fff !important;
+}
+
